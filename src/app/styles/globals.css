@@ -10,11 +10,11 @@
   -webkit-box-shadow: inset 0 0 6px rgba(184, 184, 184, 0.3);
   border-radius: 10px;
 
-  background-color: #FC393A;
+  background-color: #fc393a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #FC393A;
+  background-color: #fc393a;
 }
 
 /* For Firefox */
@@ -25,28 +25,19 @@
 ::-moz-scrollbar-thumb {
   border-radius: 10px;
 
-  background-color: #FC393A;
+  background-color: #fc393a;
 }
 
 ::-moz-scrollbar-thumb:hover {
-  background-color: #FC393A;
+  background-color: #fc393a;
 }
 
-
 body {
-  background: #0B0B0B;
+  background: #0b0b0b;
 }
 
 header {
-  background: #0B0B0B;
-}
-
-.bg-light-red {
-  background: rgba(239, 29, 30, 0.2);
-}
-
-.bg-vampire-light {
-  background: #171313;
+  background: #0b0b0b;
 }
 
 .text-large {
@@ -99,7 +90,6 @@ h2 {
     font-size: 55px !important;
   }
 }
-
 
 /* h3 styles */
 h3 {
@@ -198,9 +188,9 @@ h6 {
 }
 
 .text-d4 {
-  color: #D4D4D4
+  color: #d4d4d4;
 }
 
-table tbody tr:last-child{
-  border:0
+table tbody tr:last-child {
+  border: 0;
 }
