@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-import "./globals.css";
+import "./styles/globals.css";
+import "./styles/index.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import WagmiProviderComp from "@/lib/wagmiProvider";
 import { headers } from "next/headers";
@@ -60,7 +61,9 @@ export default function RootLayout({
             <WagmiProviderComp initialState={initialState}>
               <main className={montserrat.className}>
                 <NavBar />
-                <div className="w-full text-white">{children}</div>
+                <div className="w-full text-white flex flex-col items-center p-4">
+                  {children}
+                </div>
               </main>
             </WagmiProviderComp>
           </MantineProvider>
