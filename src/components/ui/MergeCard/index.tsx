@@ -4,10 +4,22 @@ import SwapIcon from "@/assets/img/swap.svg";
 import PerlIcon from "@/assets/img/tokens/perl.png";
 import BloodIcon from "@/assets/img/tokens/blood.png";
 import { Button } from "@/components";
+import { MergeStatus } from "@/types";
 
-export const MergeCard = () => {
+type MergeCardProps = {
+  status?: MergeStatus;
+};
+
+const STATUS_COLORS = {
+  [MergeStatus.Pending]: "#B5A3A3",
+  [MergeStatus.Deposit]: "#05E278",
+  [MergeStatus.Cliff]: "#EFAD2B",
+  [MergeStatus.Vesting]: "#23DAE5",
+};
+
+export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
   return (
-    <div className="card bg-card p-5 w-full md:w-[510px] flex flex-col items-center gap-5">
+    <div className="card bg-card p-5 w-full md:w-[486px] flex flex-col items-center gap-5">
       <div className="flex items-center justify-between w-full">
         <div className="card flex items-center px-4 py-3 w-40 bg-vampire-light2 gap-3">
           <Image src={PerlIcon} alt="token1" className="rounded w-[38px]" />
@@ -40,7 +52,12 @@ export const MergeCard = () => {
       <div className="flex justify-between w-full">
         <div>
           <div className="font-medium">Status</div>
-          <div className="pt-1 font-bold text-xl text-neutral-300">Pending</div>
+          <div
+            className="pt-1 font-bold text-xl"
+            style={{ color: STATUS_COLORS[status] }}
+          >
+            {status.toString()}
+          </div>
         </div>
         <div>
           <div className="font-medium">Deposited</div>
