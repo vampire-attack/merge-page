@@ -8,6 +8,8 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 export const theme = createTheme({
   /** Put your mantine theme override here */
   ...montserrat.style,
+  black: "#000000",
+  white: "#FFFFFF",
   colors: {
     bgLight: colorsTuple("#171313"),
     bgLight2: colorsTuple("#262121"),

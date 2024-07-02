@@ -75,7 +75,10 @@ export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
           </div>
         </div>
 
-        <hr className="w-full border-gray-700" />
+        <hr
+          className="w-full"
+          style={{ borderColor: theme.colors.border[0] }}
+        />
 
         <div className="flex justify-between w-full">
           <div>
