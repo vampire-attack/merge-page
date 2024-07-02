@@ -6,7 +6,7 @@ import SwapIcon from "@/assets/img/swap.svg";
 import PerlIcon from "@/assets/img/tokens/perl.png";
 import BloodIcon from "@/assets/img/tokens/blood.png";
 import InfoIcon from "@/assets/img/info.svg";
-import { Button, DepositModal } from "@/components";
+import { Button, DepositModal, WithdrawModal } from "@/components";
 import { MergeStatus } from "@/types";
 import { Popover, Text, Title, useMantineTheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -23,12 +23,28 @@ export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
     depositModalShowing,
     { close: closeDepositModal, open: openDepositModal },
   ] = useDisclosure(false);
+  const [
+    withdrawModalShowing,
+    { close: closeWithdrawModal, open: openWithdrawModal },
+  ] = useDisclosure(false);
 
-  const STATUS_COLORS = {
-    [MergeStatus.Pending]: theme.colors.textGray2[0],
-    [MergeStatus.Deposit]: theme.colors.green[0],
-    [MergeStatus.Cliff]: theme.colors.yellow[0],
-    [MergeStatus.Vesting]: theme.colors.cyan[0],
+  const STATUS_INFO = {
+    [MergeStatus.Pending]: {
+      color: theme.colors.textGray2[0],
+      isWithdraw: false,
+    },
+    [MergeStatus.Deposit]: {
+      color: theme.colors.green[0],
+      isWithdraw: false,
+    },
+    [MergeStatus.Cliff]: {
+      color: theme.colors.yellow[0],
+      isWithdraw: true,
+    },
+    [MergeStatus.Vesting]: {
+      color: theme.colors.cyan[0],
+      isWithdraw: true,
+    },
   };
 
   return (
@@ -88,7 +104,7 @@ export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
             <Title
               order={3}
               className="!pt-1"
-              style={{ color: STATUS_COLORS[status] }}
+              style={{ color: STATUS_INFO[status].color }}
             >
               {status.toString()}
             </Title>
@@ -154,10 +170,18 @@ export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
           </div>
         </div>
 
-        <Button onClick={openDepositModal}>Deposit</Button>
+        {STATUS_INFO[status].isWithdraw ? (
+          <Button onClick={openWithdrawModal}>Withdraw</Button>
+        ) : (
+          <Button onClick={openDepositModal}>Deposit</Button>
+        )}
       </div>
 
       <DepositModal opened={depositModalShowing} onClose={closeDepositModal} />
+      <WithdrawModal
+        opened={withdrawModalShowing}
+        onClose={closeWithdrawModal}
+      />
     </>
   );
 };
