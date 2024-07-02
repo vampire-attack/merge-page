@@ -3,14 +3,17 @@ import type { Metadata } from "next";
 import "./styles/globals.css";
 import "./styles/index.css";
 import "@rainbow-me/rainbowkit/styles.css";
+import "@mantine/core/styles.css";
 import WagmiProviderComp from "@/lib/wagmiProvider";
 import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";
 import { config } from "@/lib/config";
-import { createTheme, DirectionProvider, MantineProvider } from "@mantine/core";
+import { DirectionProvider, MantineProvider } from "@mantine/core";
 import { Montserrat } from "next/font/google";
-const montserrat = Montserrat({ subsets: ["latin"] });
 import NavBar from "./shared/NavBar";
+import { theme } from "./theme";
+
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Vampire Attack",
@@ -49,15 +52,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const initialState = cookieToInitialState(config, headers().get("cookie"));
-  const theme = createTheme({
-    /** Put your mantine theme override here */
-  });
 
   return (
     <html lang="en">
       <body>
         <DirectionProvider>
-          <MantineProvider theme={theme}>
+          <MantineProvider theme={theme} defaultColorScheme="dark">
             <WagmiProviderComp initialState={initialState}>
               <main className={montserrat.className}>
                 <NavBar />

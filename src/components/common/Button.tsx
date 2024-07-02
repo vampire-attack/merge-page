@@ -1,17 +1,25 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import React from "react";
+import {
+  Button as MtButton,
+  ButtonProps,
+  PolymorphicComponentProps,
+} from "@mantine/core";
 
-type ButtonType = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
+type ButtonType = PolymorphicComponentProps<"button", ButtonProps>;
 
 export const Button = ({ className, children, ...props }: ButtonType) => {
   return (
-    <button
-      className={`w-full px-2 py-[6px] uppercase bg-red-light rounded-[5px] text-black text-sm font-extrabold ${className}`}
+    <MtButton
+      className={`!text-black px-2 py-[6px] ${className}`}
+      variant="primary"
+      tt="uppercase"
+      fullWidth
+      fw={800}
+      size="sm"
+      radius={5}
       {...props}
     >
       {children}
-    </button>
+    </MtButton>
   );
 };
