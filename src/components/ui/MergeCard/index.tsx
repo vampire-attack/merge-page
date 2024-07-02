@@ -1,10 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import SwapIcon from "@/assets/img/swap.svg";
 import PerlIcon from "@/assets/img/tokens/perl.png";
 import BloodIcon from "@/assets/img/tokens/blood.png";
+import InfoIcon from "@/assets/img/info.svg";
 import { Button } from "@/components";
 import { MergeStatus } from "@/types";
+import { Popover } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
 type MergeCardProps = {
   status?: MergeStatus;
@@ -18,6 +23,8 @@ const STATUS_COLORS = {
 };
 
 export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
+  const [opened, { close, open }] = useDisclosure(false);
+
   return (
     <div className="card bg-card p-5 w-full md:w-[486px] flex flex-col items-center gap-5">
       <div className="flex items-center justify-between w-full">
@@ -64,7 +71,33 @@ export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
           <div className="pt-1 font-bold text-xl">-</div>
         </div>
         <div>
-          <div className="font-medium">Countdown</div>
+          <div className="font-medium flex items-center gap-1">
+            <p>Countdown</p>
+            <Popover width={228} position="bottom" withArrow opened={opened}>
+              <Popover.Target>
+                <Image
+                  src={InfoIcon}
+                  alt="info"
+                  onMouseEnter={open}
+                  onMouseLeave={close}
+                />
+              </Popover.Target>
+              <Popover.Dropdown className="bg-vampire-light2 rounded-xl pointer-events-none p-4 flex flex-col items-center gap-3  text-white text-sm font-medium">
+                <div className="w-full flex items-center justify-between">
+                  <p>Deposit Period:</p>
+                  <p>60 days</p>
+                </div>
+                <div className="w-full flex items-center justify-between">
+                  <p>Cliff Period:</p>
+                  <p>3 months</p>
+                </div>
+                <div className="w-full flex items-center justify-between">
+                  <p>Vesting Period:</p>
+                  <p>6 months</p>
+                </div>
+              </Popover.Dropdown>
+            </Popover>
+          </div>
           <div className="pt-1 font-bold text-xl">-</div>
         </div>
       </div>

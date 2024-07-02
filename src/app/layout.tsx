@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./styles/globals.css";
 import "./styles/index.css";
 import "@rainbow-me/rainbowkit/styles.css";
+import "@mantine/core/styles.css";
 import WagmiProviderComp from "@/lib/wagmiProvider";
 import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";
@@ -57,7 +58,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <DirectionProvider>
-          <MantineProvider theme={theme}>
+          <MantineProvider theme={theme} defaultColorScheme="dark">
             <WagmiProviderComp initialState={initialState}>
               <main className={montserrat.className}>
                 <NavBar />
