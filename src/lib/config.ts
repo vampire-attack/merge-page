@@ -1,25 +1,34 @@
+"use client";
 
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
-import { cookieStorage, createStorage } from "wagmi";
-import { base, mainnet, optimism } from 'wagmi/chains'
+import { base, mainnet } from "wagmi/chains";
+import { getDefaultWallets } from "@rainbow-me/rainbowkit";
 
-export const projectId = 'db99d4d311764dbfb7e4563ce13e71fb';
+export const projectId = "db99d4d311764dbfb7e4563ce13e71fb";
 
 if (!projectId) throw new Error("Project ID is not defined");
 
 const metadata = {
-    name: "Web3Modal Example",
-    description: "Web3Modal Example",
-    url: "https://web3modal.com",
-    icons: ["https://avatars.githubusercontent.com/u/37784886"],
+  name: "Vampire Attack",
+  description: "Vampire Attack WebApp",
+  icons: [
+    "/apple-touch-icon.png",
+    "/favicon-32x32.png",
+    "/favicon-16x16.png",
+    "/safari-pinned-tab.svg",
+  ],
+  url: "https://app.vampireattack.com",
 };
 
+const { connectors } = getDefaultWallets({
+  appName: "vampire-attack",
+  projectId,
+});
+
 export const config = defaultWagmiConfig({
-    chains: [mainnet, base],
-    projectId,
-    metadata,
-    ssr: true,
-    storage: createStorage({
-        storage: cookieStorage,
-    }),
+  chains: [mainnet, base],
+  connectors,
+  projectId,
+  metadata,
+  ssr: true,
 });
