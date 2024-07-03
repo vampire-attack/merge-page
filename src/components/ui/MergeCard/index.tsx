@@ -52,14 +52,22 @@ export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
       <div className="card bg-card p-5 w-full md:w-[486px] flex flex-col items-center gap-5">
         <div className="flex items-center justify-between w-full">
           <div className="card flex items-center px-4 py-3 w-40 bg-vampire-light2 gap-3">
-            <Image src={PerlIcon} alt="token1" className="rounded w-[38px]" />
+            <Image
+              src={PerlIcon}
+              alt="token1"
+              className="rounded w-6 md:w-[38px]"
+            />
             <Text size="md" className="flex-1" fw={600} ta="center">
               1 PERL
             </Text>
           </div>
           <Image src={SwapIcon} alt="swap" className="cursor-pointer" />
           <div className="card flex items-center px-4 py-3 w-40 bg-vampire-light2 gap-3">
-            <Image src={BloodIcon} alt="token1" className="rounded w-[38px]" />
+            <Image
+              src={BloodIcon}
+              alt="token1"
+              className="rounded w-6 md:w-[38px]"
+            />
             <Text size="md" className="flex-1" fw={600} ta="center">
               1 BLOOD
             </Text>
