@@ -1,1 +1,1 @@
-export * from "./MergeStatus";
+export * from "./Merge";
