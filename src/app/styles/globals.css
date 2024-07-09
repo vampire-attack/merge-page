@@ -32,10 +32,16 @@
   background-color: #fc393a;
 }
 
-body {
+main {
   background: #0b0b0b;
 }
 
 header {
   background: #0b0b0b;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 75%;
+  }
 }
