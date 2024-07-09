@@ -1,5 +1,6 @@
 import {
   useReadContract,
+  useReadContracts,
   useWaitForTransactionReceipt,
   useWriteContract,
 } from "wagmi";
@@ -20,6 +21,36 @@ export const useMergeAssetAddress = () => {
   return {
     data: data ?? "0x0",
     isFetching,
+  };
+};
+
+export const useTargetAssets = () => {
+  const {
+    data: length,
+    isFetching: isLengthFetching,
+    refetch,
+  } = useReadContract({
+    abi: MergeABI,
+    address: CONTRACT_ADDRESSES.merge,
+    functionName: "targetAssetsLength",
+    args: [],
+  });
+
+  const { data, isFetching: isArrayFetching } = useReadContracts({
+    contracts: new Array(Number(length ?? 0)).fill(0).map((_, index) => ({
+      abi: MergeABI,
+      address: CONTRACT_ADDRESSES.merge,
+      functionName: "taretAssets",
+      args: [index],
+    })),
+  });
+
+  return {
+    data: (data ?? []).map(
+      (item) => String(item.result ?? "0x0") as `0x${string}`
+    ),
+    isFetching: isLengthFetching || isArrayFetching,
+    refetch,
   };
 };
 
