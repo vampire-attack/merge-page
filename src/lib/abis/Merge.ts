@@ -174,7 +174,7 @@ export const MergeABI = [
             type: "uint256",
           },
         ],
-        internalType: "struct IMerge.MergeParams",
+        internalType: "struct IMergeManager.MergeParams",
         name: "params",
         type: "tuple",
       },
@@ -184,7 +184,7 @@ export const MergeABI = [
         type: "uint256",
       },
     ],
-    name: "depositMergeTokens",
+    name: "depositMergeToken",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -245,7 +245,7 @@ export const MergeABI = [
             type: "uint256",
           },
         ],
-        internalType: "struct IMerge.MergeParams",
+        internalType: "struct IMergeManager.MergeParams",
         name: "params",
         type: "tuple",
       },
@@ -371,6 +371,38 @@ export const MergeABI = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "targetAssets",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "targetAssetsLength",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "newOwner",
         type: "address",
@@ -436,7 +468,7 @@ export const MergeABI = [
         type: "address",
       },
     ],
-    name: "withdrawTargetAssets",
+    name: "withdrawTargetAsset",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

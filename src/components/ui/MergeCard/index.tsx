@@ -12,10 +12,10 @@ import { Popover, Text, Title, useMantineTheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
 type MergeCardProps = {
-  status?: MergeStatus;
+  targetAsset: `0x${string}`;
 };
 
-export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
+export const MergeCard = ({ targetAsset }: MergeCardProps) => {
   const theme = useMantineTheme();
   const [infoShowing, { close: closeInfo, open: openInfo }] =
     useDisclosure(false);
@@ -27,6 +27,8 @@ export const MergeCard = ({ status = MergeStatus.Pending }: MergeCardProps) => {
     withdrawModalShowing,
     { close: closeWithdrawModal, open: openWithdrawModal },
   ] = useDisclosure(false);
+
+  const status = MergeStatus.Pending;
 
   const STATUS_INFO = {
     [MergeStatus.Pending]: {
