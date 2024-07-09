@@ -1,3 +1,5 @@
+"use client";
+
 import { MergeCard } from "@/components";
 import { useTargetAssets } from "@/hooks";
 import { LoadingOverlay, Text, Title } from "@mantine/core";
